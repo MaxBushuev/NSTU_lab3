@@ -22,7 +22,7 @@ int main(int argc, char* argv[]){
 			temp.erase(temp.size()-1);
 		strs.push(temp);
 	}
-	cout << "Количество слов в строке: " << strs.size() << endl;
+	cout << "Number of words in the string: " << strs.size() << endl;
 	string output;
 	while(!strs.empty()){
 		output.append(strs.top());
