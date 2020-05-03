@@ -19,4 +19,8 @@ class List{
 		void changeName(int n, string name);
 		void changeGroup(int n, string group);
 		void changeMark(int n, int sub, int mrk);
+
+		friend ostream& operator<< (ostream &out, List &list);
+		friend ofstream& operator<< (ofstream &fout, List &list);
+		friend ifstream& operator>> (ifstream &fin, List &list);
 };

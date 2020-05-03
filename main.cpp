@@ -1,5 +1,6 @@
 #include "List.hpp"
 #include <iostream>
+#include <fstream>
 using namespace std;
 int main(int argc, char* argv[]){
 	bool flag = true;
@@ -7,12 +8,20 @@ int main(int argc, char* argv[]){
 	int n, num;
 	string s_temp, s_temp1;
 	int sub, mrk;
+	ofstream output;
 	if(argc != 2){
 		cout << "Incorrect number of arguments" << endl;
 		return -1;
 	}
 	List studList;
-	studList.readFromFile(argv[1]);
+	//studList.readFromFile(argv[1]);
+	ifstream input(argv[1]);
+	if(!input.is_open()){
+		cout << "Can't open the file" << endl;
+		return -1;
+	}
+	input >> studList;
+	input.close();
 	while(flag){
 		cout << "Choose what to do" << endl;
 		cout << "1. Add new student" << endl;
@@ -27,12 +36,7 @@ int main(int argc, char* argv[]){
 		switch(action){
 			case 1:
 				temp = new Students;
-				cout << "Enter student's name: ";
-				cin >> s_temp;
-				temp->setName(s_temp);
-				cout << "Enter student's group: ";
-				cin >> s_temp;
-				temp->setGroup(s_temp);
+				cin >> *temp;
 				studList.add(temp);
 				break;
 			case 2:
@@ -104,6 +108,7 @@ int main(int argc, char* argv[]){
 						cout << "Enter group: ";
 						cin >> s_temp1;
 						studList.find(s_temp, s_temp1);
+						break;
 					case 4:
 						cout << "What mark do you want to find?" << endl;
 						cout << "0. Math analysis" << endl;
@@ -119,10 +124,16 @@ int main(int argc, char* argv[]){
 				}
 				break;
 			case 5:
-				studList.printAll();
+				cout << studList;
 				break;
 			case 6:
-				studList.writeToFile(argv[1]);
+				output.open(argv[1]);
+				if(!output.is_open()){
+					cout << "Can't open the file" << endl;
+					return -1;
+				}
+				output << studList;
+				output.close();
 				break;
 			case 7:
 				flag = false;

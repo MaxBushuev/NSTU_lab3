@@ -21,4 +21,9 @@ class Students{
 		string name();
 		string group();
 		int* marks();
+
+		friend ostream& operator<< (ostream &out, Students &student);
+		friend istream& operator>> (istream &in, Students &student);
+		friend ofstream& operator<< (ofstream &fout, Students &student);
+		friend ifstream& operator>> (ifstream &fin, Students &student);
 };

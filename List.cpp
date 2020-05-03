@@ -161,3 +161,34 @@ void List::changeMark(int n, int sub, int mrk){
 		temp = temp->next();
 	temp->setMark(sub, mrk);
 }
+
+ostream& operator<< (ostream &out, List &list){
+	Students* temp = list.head;
+	for(int i = 0; i < list._size; i++){
+		out << "Number of element: " << i << endl;
+		out << *temp;
+		out << endl;
+		temp = temp->next();
+	}
+	return out;
+}
+
+ofstream& operator<< (ofstream &fout, List &list){
+	Students* temp = list.head;
+	while(temp != NULL){
+		fout << *temp;
+		temp = temp->next();
+	}
+	return fout;
+}
+ifstream& operator>> (ifstream &fin, List &list){
+	
+	do{
+		Students* temp = new Students;
+		fin >> *temp;
+
+		list.add(temp);
+	} while(!fin.eof());
+	list.popHead();
+	return fin;
+}
