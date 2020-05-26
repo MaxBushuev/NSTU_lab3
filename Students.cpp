@@ -9,6 +9,9 @@ Students::Students(){
 		_marks[i] = -1;
 	_next = NULL;
 }
+Students::~Students(){
+	delete marks;	
+}
 void Students::setMark(int subject, int mark){
 	_marks[subject] = mark;
 }
